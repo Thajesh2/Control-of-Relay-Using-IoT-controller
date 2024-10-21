@@ -39,24 +39,42 @@ In this Arduino  Relay Control Circuit we have used Arduino to control the relay
 
 ## PROGRAM:
 ```
-int delaypin = A0;
-void setup() {
-  pinMode(delaypin, OUTPUT);
+int sensorPin = A0; // select the input pin for the LDR
+int sensorValue = 0; // variable to store the value coming from the sensor
+int led = 13;
+void setup() { // declare the ledPin as an OUTPUT:
+pinMode(led, OUTPUT);
+Serial.begin(9600); }
+void loop()
+{
+sensorValue = analogRead(sensorPin);
+Serial.println(sensorValue);
+if (sensorValue < 100)
+{
+Serial.println("LED light on");
+digitalWrite(led,HIGH);
+delay(1000);
 }
-
-void loop() {
-  digitalWrite(delaypin, HIGH);
-  delay(1000);
-  digitalWrite(delaypin, LOW);
-  delay(1000);
+else
+{
+digitalWrite(led,LOW);
+Serial.println("LED light off");
+delay(1000);
+}
 }
 ```
+
 ## CIRCUIT DIAGRAM:
-![2 1](https://github.com/user-attachments/assets/13de3758-85ea-4263-8df4-0f806236852a)
+![image](https://github.com/user-attachments/assets/942506d0-64e5-4798-9703-555c5b606ae9)
 
 ## OUTPUT:
-![2 2](https://github.com/user-attachments/assets/8acba82b-7b90-4cc5-ac3b-110f20e2eee6)
-![2 3](https://github.com/user-attachments/assets/4a7b6b8d-ac32-482d-823c-d002bd56ebbf)
+### LED OFF MODE:
+![image](https://github.com/user-attachments/assets/38bd8bc4-0691-421a-8687-8f26143bd02d)
+
+### LED ON MODE:
+![image](https://github.com/user-attachments/assets/d8596fa9-df35-4dbf-96ec-d256ad82840e)
+
 
 ## RESULT:
+
 Thus the relay is controlled using Arduino controller.
